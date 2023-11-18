@@ -14,7 +14,7 @@ enum Language{
     }
   }
   static int languageToJson(Language genre) {
-    return genre.index;
+    return genre.value;
   }
 
   static Language languageFromJson(dynamic json) {

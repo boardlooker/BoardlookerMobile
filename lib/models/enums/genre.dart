@@ -18,7 +18,7 @@ enum Genre{
     }
   }
   static int genreToJson(Genre genre) {
-    return genre.index;
+    return genre.value;
   }
 
   static Genre genreFromJson(dynamic json) {
