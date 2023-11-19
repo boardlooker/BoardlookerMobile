@@ -8,6 +8,7 @@ class User with _$User {
 const factory User({
   required final String username,
   required final String password,
+  @JsonKey(name: "full_name")
   required final String fullName,
   required final String birthdate
 }) = _User;
