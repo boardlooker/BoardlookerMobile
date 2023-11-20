@@ -53,6 +53,11 @@ class ApiClient {
         }),
         options: Options(sendTimeout: const Duration(seconds: 50), receiveTimeout: const Duration(seconds: 60)));
   }
+  Future<Response<dynamic>> getProfile() {
+    return _dioClient.get('/api/users/me',
+        options: Options(sendTimeout: const Duration(seconds: 50), receiveTimeout: const Duration(seconds: 60)));
+  }
+
   Future<Response<dynamic>> getProfileData(){
     return _dioClient.get('/users/me',
         options: Options(sendTimeout: const Duration(seconds: 50), receiveTimeout: const Duration(seconds: 60)));

@@ -12,6 +12,7 @@ abstract interface class IAuthRepository {
     required String fullName,
     required String birthdate,
   });
+  Future<Response<dynamic>> getProfile();
 
   @factoryMethod
   static AuthApiRepository create(ApiClient client) => AuthApiRepository(client);

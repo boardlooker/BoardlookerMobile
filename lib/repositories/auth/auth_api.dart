@@ -29,4 +29,8 @@ class AuthApiRepository implements IAuthRepository {
         birthdate: birthdate
     );
   }
+  @override
+  Future<Response<dynamic>> getProfile() {
+    return _client.getProfile();
+  }
 }
