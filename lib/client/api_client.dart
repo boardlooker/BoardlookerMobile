@@ -23,7 +23,7 @@ class ApiClient {
         onRequest: (options, handler) async {
           var token = await _secureStorage.read(key: 'token');
           if (token != null) {
-            options.headers['Authorization'] = "Bearer $token";
+            options.headers['Authorization'] = token;
           }
           return handler.next(options);
         },
@@ -57,4 +57,21 @@ class ApiClient {
     return _dioClient.get('/users/me',
         options: Options(sendTimeout: const Duration(seconds: 50), receiveTimeout: const Duration(seconds: 60)));
   }
-}
+
+  Future<Response<dynamic>> getBoardgames(){
+    return _dioClient.get('/boardgames/',
+        options: Options(sendTimeout: const Duration(seconds: 50), receiveTimeout: const Duration(seconds: 60)));
+  }
+  Future<Response<dynamic>> getBoardgamesById(int id){
+    return _dioClient.get('/boardgames/$id',
+        options: Options(sendTimeout: const Duration(seconds: 50), receiveTimeout: const Duration(seconds: 60)));
+  }
+  Future<Response<dynamic>> getBoardgamesByLocationId(int id){
+    return _dioClient.get('/boardgames/$id/',
+        options: Options(sendTimeout: const Duration(seconds: 50), receiveTimeout: const Duration(seconds: 60)));
+  }
+  Future<Response<dynamic>> makeBooking(int id){
+    return _dioClient.post('/boardgames/$id/',
+        options: Options(sendTimeout: const Duration(seconds: 50), receiveTimeout: const Duration(seconds: 60)));
+  }
+  }
