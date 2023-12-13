@@ -41,6 +41,7 @@ class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
         emit(state.copyWith(requestState: RequestState.error));
         return;
       }
+      log("reg success");
       emit(state.copyWith(requestState: RequestState.success));
     } catch (e) {
       log(e.toString());
@@ -67,7 +68,7 @@ class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
         emit(state.copyWith(requestState: RequestState.error));
         return;
       }
-
+      log("login success");
       emit(state.copyWith(
           requestState: RequestState.success,
           user: User(

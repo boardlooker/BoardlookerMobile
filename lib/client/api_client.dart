@@ -1,6 +1,7 @@
 import 'package:boardlooker_mobile/shared/index.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 @singleton
 class ApiClient {
@@ -10,20 +11,20 @@ class ApiClient {
   ApiClient(this._secureStorage) {
     _dioClient
       ..options.baseUrl = Constants.apiUrl
-    // ..interceptors.add(PrettyDioLogger(
-    //     requestHeader: true,
-    //     requestBody: true,
-    //     responseBody: true,
-    //     responseHeader: true,
-    //     error: true,
-    //     compact: true,
-    //     maxWidth: 90))
+    ..interceptors.add(PrettyDioLogger(
+        requestHeader: true,
+        requestBody: true,
+        responseBody: true,
+        // responseHeader: true,
+        error: true,
+        compact: true,
+        maxWidth: 90))
       ..options.connectTimeout = const Duration(seconds: 20)
       ..interceptors.add(InterceptorsWrapper(
         onRequest: (options, handler) async {
           var token = await _secureStorage.read(key: 'token');
           if (token != null) {
-            options.headers['Authorization'] = token;
+            options.headers['token'] = token;
           }
           return handler.next(options);
         },
@@ -32,11 +33,19 @@ class ApiClient {
 
   Future<Response<dynamic>> login({required String username, required String password}) {
     return _dioClient.post('/users/signin',
-        data: FormData.fromMap({
-          'username': username,
-          'password': password,
-        }),
-        options: Options(sendTimeout: const Duration(seconds: 50), receiveTimeout: const Duration(seconds: 60)));
+        data: {
+        'username': username,
+        'password': password,
+      },
+        options: Options(
+          sendTimeout: const Duration(seconds: 50),
+          receiveTimeout: const Duration(seconds: 60),
+            headers: {
+              'accept': 'application/json',
+              'Content-Type': 'application/json',
+            }
+        ),
+    );
   }
   Future<Response<dynamic>> signUp({
     required String username,
@@ -44,23 +53,32 @@ class ApiClient {
     required String fullName,
     required String birthdate,
   }) {
-    return _dioClient.post('/users/signin',
-        data: FormData.fromMap({
+    return _dioClient.post('/users/signup',
+        data: {
           'username': username,
           'password': password,
           'full_name': fullName,
           'birthdate': birthdate
-        }),
+        },
         options: Options(sendTimeout: const Duration(seconds: 50), receiveTimeout: const Duration(seconds: 60)));
   }
   Future<Response<dynamic>> getProfile() {
-    return _dioClient.get('/api/users/me',
-        options: Options(sendTimeout: const Duration(seconds: 50), receiveTimeout: const Duration(seconds: 60)));
+    return _dioClient.get('/users/me',
+        options: Options(
+            sendTimeout: const Duration(seconds: 50),
+            receiveTimeout: const Duration(seconds: 60),
+            headers: {
+              'accept': 'application/json',
+            }));
   }
 
   Future<Response<dynamic>> getProfileData(){
     return _dioClient.get('/users/me',
-        options: Options(sendTimeout: const Duration(seconds: 50), receiveTimeout: const Duration(seconds: 60)));
+        options: Options(
+          sendTimeout: const Duration(seconds: 50),
+            receiveTimeout: const Duration(seconds: 60),
+            )
+    );
   }
 
   Future<Response<dynamic>> getBoardgames(){
