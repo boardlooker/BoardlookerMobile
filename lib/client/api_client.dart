@@ -97,4 +97,45 @@ class ApiClient {
     return _dioClient.post('/boardgames/$id/',
         options: Options(sendTimeout: const Duration(seconds: 50), receiveTimeout: const Duration(seconds: 60)));
   }
+  Future<Response<dynamic>> getLocations(String? city, String? nameRegex, String? locType){
+    return _dioClient.get('/locations/',
+      queryParameters: {
+        'city': city ?? '',
+        'name_regex': nameRegex ?? '',
+        'loc_type': locType ?? ''
+      },
+        options: Options(
+            sendTimeout: const Duration(seconds: 50),
+            receiveTimeout: const Duration(seconds: 60),
+            headers: {
+              'accept': 'application/json',
+            }
+        )
+    );
+  }
+  Future<Response<dynamic>> getLocationById(int id){
+    return _dioClient.get('/locations/$id',
+        options: Options(
+            sendTimeout: const Duration(seconds: 50),
+            receiveTimeout: const Duration(seconds: 60),
+            headers: {
+              'accept': 'application/json',
+            }
+        )
+    );
+  }
+  Future<Response<dynamic>> getLocationBookingByDay(int locId, String day){
+    return _dioClient.get('/locations/$locId/bookings',
+        queryParameters: {
+        'day': day
+        },
+        options: Options(
+            sendTimeout: const Duration(seconds: 50),
+            receiveTimeout: const Duration(seconds: 60),
+            headers: {
+              'accept': 'application/json',
+            }
+        )
+    );
+  }
   }
