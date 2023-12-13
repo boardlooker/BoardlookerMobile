@@ -1,5 +1,7 @@
 enum Routes {
+  root("/root"),
   login("/login"),
+  registration("/registration"),
   objects("/signin");
   // sets("/sets"),
   // profile("/profile");
@@ -13,7 +15,9 @@ enum Routes {
 }
 
 enum NamedRoutes {
+  root("/root"),
   login("/login"),
+  registration("/registration"),
   objects("/signin");
   // objects("/objects"),
   // sets("/sets"),
