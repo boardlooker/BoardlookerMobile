@@ -1,5 +1,7 @@
+import 'package:boardlooker_mobile/shared/enums/index.dart';
 import 'package:boardlooker_mobile/widgets/index.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginScreen extends StatefulWidget{
 
@@ -37,7 +39,9 @@ class LoginScreenState extends State<LoginScreen>{
         backgroundColor: Theme.of(context).colorScheme.background,
         leading:  IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () {  },
+          onPressed: () {
+            GoRouter.of(context).push(Routes.root.name);
+          },
         ),
       ),
       body:  Container(
