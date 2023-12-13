@@ -1,5 +1,7 @@
+import 'package:boardlooker_mobile/shared/enums/index.dart';
 import 'package:boardlooker_mobile/widgets/index.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class RootScreen extends StatelessWidget {
   const RootScreen({super.key});
@@ -27,14 +29,14 @@ class RootScreen extends StatelessWidget {
                   const SizedBox(height: 19),
                   PrimaryButton(
                     onPress: () {
-                      // GoRouter.of(context).push(Routes.login.name);
+                      GoRouter.of(context).push(Routes.login.name);
                     },
                     label: "Войти",
                   ),
                   const SizedBox(height: 11),
                   PrimaryButton(
                     onPress: () {
-                      // context.read<AuthBloc>().add(AuthEmergencyLoginRequestedEvent());
+                      GoRouter.of(context).push(Routes.registration.name);
                     },
                     label: "Зарегистрироваться",
                   ),
