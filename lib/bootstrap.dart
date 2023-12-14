@@ -32,6 +32,12 @@ class Bootstrap extends StatelessWidget {
           BlocProvider(
             create: (BuildContext context) => FilesystemBloc(),
           ),
+          BlocProvider(
+            create: (BuildContext context) => LocationBloc(
+                GetIt.instance.get<ILocationRepository>(),
+                GetIt.instance.get<ILocationLocalRepository>()
+            ),
+          ),
         ],
         child: BlocListener<InternetAccessCubit, InternetAccessState>(
           listener: (context, state) {},
