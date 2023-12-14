@@ -7,6 +7,7 @@ part 'location.g.dart';
 @freezed
 class Location with _$Location {
   const factory Location({
+    required final int id,
     required final String title,
     required final String location,
     @JsonKey(name: "location_city")
