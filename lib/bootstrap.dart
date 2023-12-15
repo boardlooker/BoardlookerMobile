@@ -54,7 +54,9 @@ class Bootstrap extends StatelessWidget {
                   Locale('en', 'US'),
                   Locale('ru', 'RU'),
                 ],
-                routerConfig: authRouter(),
+                routerConfig: state.authStatus == AuthStatus.unauthorized
+                    ? authRouter()
+                    : appRouter(),
                 theme: ThemeData(
                   colorScheme: colorScheme,
                   useMaterial3: true,
