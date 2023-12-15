@@ -13,8 +13,12 @@ class PrimaryButton extends StatelessWidget {
     return OutlinedButton(
       style: OutlinedButton.styleFrom(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-        foregroundColor: const Color(0xFF6F9520),
-        backgroundColor: const Color(0xFFBADB76),
+        foregroundColor: Theme.of(context).brightness == Brightness.light
+            ? const Color(0xFF6F9520)
+            : Colors.black,
+        backgroundColor: Theme.of(context).brightness == Brightness.light
+            ? const Color(0xFFBADB76)
+            : const Color(0xFFE59F84),
         side: const BorderSide(
           color: Colors.transparent,
         ),
