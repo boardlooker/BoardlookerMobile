@@ -66,7 +66,12 @@ class LocationScreenState extends State<LocationScreen>{
                           "assets/icon/menu_icon.svg",
                           width: 35.0,
                           height: 35.0,
-                        ), onPressed: () {  },
+                        ), onPressed: () {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) => const DialogMenuWidget()
+                          );
+                      },
                       ),
                       flexibleSpace: FlexibleSpaceBar(
                         // title: const Text('Выберите заведение',
@@ -102,6 +107,17 @@ class LocationScreenState extends State<LocationScreen>{
                                       color: Colors.black,
                                     )
                                   ),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      nameRegex = value == "" ? null : value;
+                                    });
+                                    BlocProvider.of<LocationBloc>(context).add(LocationListRequestedEvent(
+                                        city: widget.city,
+                                        locType: locType?.value,
+                                        nameRegex: nameRegex
+                                    )
+                                    );
+                                  },
                                   trailing: [
                                     IconButton(
                                       icon: const Icon(Icons.filter_alt_outlined,

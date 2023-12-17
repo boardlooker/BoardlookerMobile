@@ -42,13 +42,6 @@ class FilterMenuState extends State<FilterMenu>{
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text('Все',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 16.0,
-                              color: Colors.black
-                          ),
-                        ),
                         Radio<LocationType?>(
                           onChanged: (LocationType? value) {
                             setState(() {
@@ -59,18 +52,18 @@ class FilterMenuState extends State<FilterMenu>{
                           value: null,
                           groupValue: locType,
                         ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text('Бар',
+                        const Text('Все',
                           style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 16.0,
                               color: Colors.black
                           ),
                         ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
                         Radio<LocationType?>(
                           onChanged: (LocationType? value) {
                             setState(() {
@@ -81,18 +74,18 @@ class FilterMenuState extends State<FilterMenu>{
                           value: LocationType.bar,
                           groupValue: locType,
                         ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text('Кафе',
+                        const Text('Бар',
                           style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 16.0,
                               color: Colors.black
                           ),
                         ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
                         Radio<LocationType?>(
                           onChanged: (LocationType? value) {
                             setState(() {
@@ -103,18 +96,18 @@ class FilterMenuState extends State<FilterMenu>{
                           value: LocationType.cafe,
                           groupValue: locType,
                         ),
-                      ],
-                      ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text('Кальянная',
+                        const Text('Кафе',
                           style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 16.0,
                               color: Colors.black
                           ),
                         ),
+                      ],
+                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
                         Radio<LocationType?>(
                           onChanged: (LocationType? value) {
                             setState(() {
@@ -125,18 +118,18 @@ class FilterMenuState extends State<FilterMenu>{
                           value: LocationType.hookah,
                           groupValue: locType,
                         ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text('Другое',
+                        const Text('Кальянная',
                           style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 16.0,
                               color: Colors.black
                           ),
                         ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
                         Radio<LocationType?>(
                           onChanged: (LocationType? value) {
                             setState(() {
@@ -146,6 +139,13 @@ class FilterMenuState extends State<FilterMenu>{
                           },
                           value: LocationType.other,
                           groupValue: locType,
+                        ),
+                        const Text('Другое',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 16.0,
+                              color: Colors.black
+                          ),
                         ),
                       ],
                     ),
