@@ -20,22 +20,22 @@ class LocationDbRepository implements ILocationLocalRepository{
 
   @override
   Stream<List<Location>> getLocationList() {
-    return _dbClient.dbClient.locationDao
+    return _dbClient.dbClient.dbDao
         .getLocationList()
         .asyncMap((locations) => locations.map((e) => e.toLocationDto()).toList());
   }
 
   @override
   saveLocationList(List<Location> locations) async {
-    return await _dbClient.dbClient.locationDao
+    return await _dbClient.dbClient.dbDao
         .insertLocations(locations.map((e) => e.toLocationFloor()).toList());
   }
 
   @override
   Future<int> syncObjects(List<Location> locations) async {
-    var locationForDelete = await _dbClient.dbClient.locationDao.getUnavailableLocations(locations.map((e) => e.id).toList());
+    var locationForDelete = await _dbClient.dbClient.dbDao.getUnavailableLocations(locations.map((e) => e.id).toList());
 
-    return await _dbClient.dbClient.locationDao.deleteUnavailableLocations(locationForDelete);
+    return await _dbClient.dbClient.dbDao.deleteUnavailableLocations(locationForDelete);
   }
 
   // @override
