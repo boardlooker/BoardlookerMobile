@@ -2,7 +2,7 @@ import 'package:boardlooker_mobile/models/index.dart';
 import 'package:floor/floor.dart';
 
 @dao
-abstract class LocationDao {
+abstract class DatabaseDao {
   @Query('SELECT * FROM locations')
   Stream<List<LocationFloor>> getLocationList();
 
@@ -20,5 +20,17 @@ abstract class LocationDao {
 
   @Insert(onConflict: OnConflictStrategy.replace)
   Future<List<int>> insertLocations(List<LocationFloor> locations);
+
+  @Query('SELECT * FROM boardgames')
+  Stream<List<BoardgameFloor>> getBoardgamesList();
+
+  @Query('SELECT * FROM boardgames where id NOT IN (:ids)')
+  Future<List<BoardgameFloor>> getUnavailableBoardgames(List<int> ids);
+
+  @delete
+  Future<int> deleteUnavailableBoardgames(List<BoardgameFloor> boardgames);
+
+  @Insert(onConflict: OnConflictStrategy.replace)
+  Future<List<int>> insertBoardgames(List<BoardgameFloor> boardgames);
 
 }
