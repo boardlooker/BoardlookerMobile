@@ -3,6 +3,7 @@ enum Routes {
   login("/login"),
   registration("/registration"),
   city("/city"),
+  location("/location"),
   objects("/signin");
   // sets("/sets"),
   // profile("/profile");
@@ -20,6 +21,7 @@ enum NamedRoutes {
   login("/login"),
   registration("/registration"),
   city("/city"),
+  location("/location"),
   objects("/signin");
   // objects("/objects"),
   // sets("/sets"),
