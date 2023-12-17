@@ -1,10 +1,12 @@
+import 'package:boardlooker_mobile/shared/enums/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 class CityScreen extends StatefulWidget{
-  String? selectedCity;
+  final String? selectedCity;
 
-  CityScreen({required this.selectedCity, super.key});
+  const CityScreen({required this.selectedCity, super.key});
 
   @override
   CityScreenState createState() => CityScreenState();
@@ -12,7 +14,8 @@ class CityScreen extends StatefulWidget{
 }
 
 class CityScreenState extends State<CityScreen>{
-
+  String? selectedCity;
+  
   final List<String> _cities= [
     'Москва',
     'Санкт-Петербург',
@@ -20,6 +23,13 @@ class CityScreenState extends State<CityScreen>{
     'Казань',
     'Екатеринбург'
   ];
+
+  @override
+  void initState() {
+    selectedCity = widget.selectedCity;
+    super.initState();
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,39 +42,6 @@ class CityScreenState extends State<CityScreen>{
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // DropdownButtonFormField(
-              //   icon: SvgPicture.asset(
-              //           Theme.of(context).brightness == Brightness.dark
-              //               ? "assets/icon/arrow_down_dark.svg"
-              //               : "assets/icon/arrow_down_light.svg",
-              //           width: 20.0,
-              //           height: 20.0,
-              //         ),
-              //   decoration: InputDecoration(
-              //     filled: true,
-              //     fillColor: Theme.of(context).colorScheme.secondary,
-              //     border: const OutlineInputBorder(
-              //         borderRadius: BorderRadius.all(Radius.circular(10.0))
-              //     ),
-              //     hintText: 'Выберите город',
-              //     hintStyle: const TextStyle(
-              //       fontWeight: FontWeight.w400,
-              //       fontSize: 20.0,
-              //     ),
-              //   ),
-              //   items: _cities.map((city){
-              //     return DropdownMenuItem(
-              //       value: city,
-              //       child: Text(city),
-              //     );
-              //   }).toList(),
-              //   onChanged: (data){
-              //     setState((){
-              //       widget.selectedCity = data;
-              //     });
-              //   },
-              //   value: widget.selectedCity,
-              // )
               DropdownMenu(
                 menuHeight: 180.0,
                 inputDecorationTheme: InputDecorationTheme(
@@ -105,8 +82,12 @@ class CityScreenState extends State<CityScreen>{
                 }).toList(),
                 onSelected: (String? city){
                   setState(() {
-                    widget.selectedCity = city;
+                    selectedCity = city;
                   });
+                  GoRouter.of(context).goNamed(
+                      Routes.location.name,
+                      queryParameters: {'city' : selectedCity}
+                  );
                 },
               ),
               const SizedBox(height: 41,),
