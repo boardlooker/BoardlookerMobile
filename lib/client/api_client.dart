@@ -98,12 +98,13 @@ class ApiClient {
         options: Options(sendTimeout: const Duration(seconds: 50), receiveTimeout: const Duration(seconds: 60)));
   }
   Future<Response<dynamic>> getLocations(String? city, String? nameRegex, String? locType){
+    final queryParameters = {
+      if (city != null) 'city': city,
+      if (nameRegex != null) 'name_regex': nameRegex,
+      if (locType != null) 'loc_type': locType,
+    };
     return _dioClient.get('/locations/',
-      queryParameters: {
-        'city': city ?? '',
-        'name_regex': nameRegex ?? '',
-        'loc_type': locType ?? ''
-      },
+      queryParameters: queryParameters,
         options: Options(
             sendTimeout: const Duration(seconds: 50),
             receiveTimeout: const Duration(seconds: 60),

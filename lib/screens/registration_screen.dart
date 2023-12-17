@@ -78,19 +78,19 @@ class RegistrationScreenState extends State<RegistrationScreen>{
                               autovalidateMode: AutovalidateMode.onUserInteraction,
                               controller: _loginEditingController,
                               keyboardType: TextInputType.text,
-                              decoration: const InputDecoration(
-                                hintStyle: TextStyle(
+                              decoration: InputDecoration(
+                                hintStyle: const TextStyle(
                                     fontWeight: FontWeight.w400,
                                     fontSize: 15.0,
                                     letterSpacing: -0.5
                                 ),
-                                contentPadding: EdgeInsets.symmetric(
+                                contentPadding: const EdgeInsets.symmetric(
                                     vertical: 8.0,
                                     horizontal: 10.0
                                 ),
                                 filled: true,
-                                fillColor: Color(0xFFBFE283),
-                                border: OutlineInputBorder(
+                                fillColor: Theme.of(context).colorScheme.primary,
+                                border: const OutlineInputBorder(
                                     borderSide: BorderSide.none,
                                     borderRadius: BorderRadius.all(Radius.circular(10.0))
                                 ),
@@ -127,7 +127,7 @@ class RegistrationScreenState extends State<RegistrationScreen>{
                                     left: 10.0
                                 ),
                                 filled: true,
-                                fillColor: const Color(0xFFBFE283),
+                                fillColor: Theme.of(context).colorScheme.primary,
                                 border: const OutlineInputBorder(
                                     borderSide: BorderSide.none,
                                     borderRadius: BorderRadius.all(Radius.circular(10.0))
@@ -155,20 +155,20 @@ class RegistrationScreenState extends State<RegistrationScreen>{
                               autovalidateMode: AutovalidateMode.onUserInteraction,
                               controller: _nameEditingController,
                               keyboardType: TextInputType.text,
-                              decoration: const InputDecoration(
-                                hintStyle: TextStyle(
+                              decoration: InputDecoration(
+                                hintStyle: const TextStyle(
                                     fontWeight: FontWeight.w400,
                                     fontSize: 15.0,
                                     letterSpacing: -0.5
                                 ),
-                                contentPadding: EdgeInsets.only(
+                                contentPadding: const EdgeInsets.only(
                                     top: 8.0,
                                     bottom: 8.0,
                                     left: 10.0
                                 ),
                                 filled: true,
-                                fillColor: Color(0xFFBFE283),
-                                border: OutlineInputBorder(
+                                fillColor: Theme.of(context).colorScheme.primary,
+                                border: const OutlineInputBorder(
                                     borderSide: BorderSide.none,
                                     borderRadius: BorderRadius.all(Radius.circular(10.0))
                                 ),
@@ -186,20 +186,20 @@ class RegistrationScreenState extends State<RegistrationScreen>{
                               autovalidateMode: AutovalidateMode.onUserInteraction,
                               controller: _dateBirthEditingController,
                               keyboardType: TextInputType.datetime,
-                              decoration: const InputDecoration(
-                                hintStyle: TextStyle(
+                              decoration: InputDecoration(
+                                hintStyle: const TextStyle(
                                     fontWeight: FontWeight.w400,
                                     fontSize: 15.0,
                                     letterSpacing: -0.5
                                 ),
-                                contentPadding: EdgeInsets.only(
+                                contentPadding: const EdgeInsets.only(
                                     top: 8.0,
                                     bottom: 8.0,
                                     left: 10.0
                                 ),
                                 filled: true,
-                                fillColor: Color(0xFFBFE283),
-                                border: OutlineInputBorder(
+                                fillColor: Theme.of(context).colorScheme.primary,
+                                border: const OutlineInputBorder(
                                     borderSide: BorderSide.none,
                                     borderRadius: BorderRadius.all(Radius.circular(10.0))
                                 ),

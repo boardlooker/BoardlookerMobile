@@ -32,6 +32,12 @@ class Bootstrap extends StatelessWidget {
           BlocProvider(
             create: (BuildContext context) => FilesystemBloc(),
           ),
+          BlocProvider(
+            create: (BuildContext context) => LocationBloc(
+                GetIt.instance.get<ILocationRepository>(),
+                GetIt.instance.get<ILocationLocalRepository>()
+            ),
+          ),
         ],
         child: BlocListener<InternetAccessCubit, InternetAccessState>(
           listener: (context, state) {},
@@ -48,7 +54,9 @@ class Bootstrap extends StatelessWidget {
                   Locale('en', 'US'),
                   Locale('ru', 'RU'),
                 ],
-                routerConfig: authRouter(),
+                routerConfig: state.authStatus == AuthStatus.unauthorized
+                    ? authRouter()
+                    : appRouter(),
                 theme: ThemeData(
                   colorScheme: colorScheme,
                   useMaterial3: true,
