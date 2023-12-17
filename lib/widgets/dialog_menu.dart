@@ -1,5 +1,7 @@
+import 'package:boardlooker_mobile/blocs/index.dart';
 import 'package:boardlooker_mobile/shared/enums/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class DialogMenuWidget extends StatelessWidget{
@@ -73,18 +75,23 @@ class DialogMenuWidget extends StatelessWidget{
                   ],
                 ),
                 const Divider(),
-                const Row(
-                  children: [
-                    Icon(Icons.logout,
-                      size: 23.0,
-                    ),
-                    Text('Выход',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 25.0
+                GestureDetector(
+                  onTap: (){
+                    BlocProvider.of<AuthBloc>(context).add(AuthLogoutRequestedEvent());
+                  },
+                  child: const Row(
+                    children: [
+                      Icon(Icons.logout,
+                        size: 23.0,
                       ),
-                    ),
-                  ],
+                      Text('Выход',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 25.0
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
