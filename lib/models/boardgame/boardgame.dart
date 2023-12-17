@@ -7,9 +7,10 @@ part 'boardgame.g.dart';
 @freezed
 class Boardgame with _$Boardgame {
   const factory Boardgame({
+    required final int id,
     required final String title,
     required final String description,
-    required final String year,
+    required final int year,
     @JsonKey(fromJson: Language.languageFromJson, toJson: Language.languageToJson)
     required final Language language,
     @JsonKey(fromJson: Genre.genreFromJson, toJson: Genre.genreToJson)
