@@ -9,7 +9,7 @@ import 'package:floor/floor.dart';
 part 'database.g.dart';
 
 @Database(
-  version: 2,
+  version: 1,
   entities: [LocationFloor, BoardgameFloor],
 )
 abstract class AppDatabase extends FloorDatabase {
