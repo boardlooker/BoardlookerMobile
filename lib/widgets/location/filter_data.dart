@@ -5,7 +5,7 @@ class FilterData extends InheritedWidget{
   final LocationType? data;
   final bool isActive;
 
-  FilterData({
+  const FilterData({
     super.key,
     required this.data,
     required this.isActive,
